@@ -1,6 +1,6 @@
 TEMPLATE = subdirs
 CONFIG += ordered
-SUBDIRS = libqtav examples tests
+SUBDIRS = libqtav examples tests apps/avCesar
 
 libqtav.file = src/libQtAV.pro
 examples.depends += libqtav
@@ -16,18 +16,19 @@ OTHER_FILES += \
 
 
 EssentialDepends = avutil avcodec avformat swscale
-OptionalDepends = portaudio direct2d gdiplus gl \
-    swresample avresample
+OptionalDepends = portaudio direct2d gdiplus gl swresample avresample
+
 unix {
-    isEqual(QT_MAJOR_VERSION, 4) {
-        OptionalDepends += xv
-    }
+	isEqual( QT_MAJOR_VERSION, 4 )
+	{
+		OptionalDepends += xv
+	}
 }
 
-include(root.pri)
+include( root.pri )
 
 PACKAGE_VERSION = 1.2.2
 PACKAGE_NAME= QtAV
 
-include(pack.pri)
+include( pack.pri )
 #packageSet(1.2.0, QtAV)
